@@ -9,6 +9,12 @@
 .App {
     text-align: center;
   }
+  .myContainer {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 100%;
+  }
+  
 .myleftlogo {
   color: #fff;
   float: left;
@@ -38,6 +44,7 @@
   .Header-Left {
     text-align: left;
   }
+  
   .Header-Right {
     text-align: right;
   }
@@ -47,26 +54,32 @@
     padding: 0;
     overflow-wrap: normal;
     color: #fff;
-    background-color: #333333;
-}
-.myContainer {
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 100%;
+    background-color: rgb(247, 131, 131); 
 }
 
 li {
     float: center;
+    padding:15px;
 }
 
 li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 0px;
+    padding:10px;
     text-decoration: none;
 }
 
 li a:hover {
     background-color: #111111;
+}
+button {
+  height: 90%;
+  max-height: 56px;
+  list-style-type: none;
+  margin: 10;
+  padding: 10;
+  overflow-wrap: normal;
+  color: #fff;
+  background-color: rgb(247, 131, 131); 
 }

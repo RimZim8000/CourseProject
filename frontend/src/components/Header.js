@@ -1,15 +1,43 @@
 import React, {Component} from 'react';
-
-
+import  {mainStore} from '../mainStore'
+import Login , {Logout} from '../Auth/GoogAuth'
 class Header extends Component
 {
+  componentWillMount()
+  {
+    // mainStore.subscribe(() =>{
+    //   //refresh the screen
+    //   console.log('in Header:componentWillMount():mainStore.subscribe(() =>loggedin user is - ', mainStore.getState() );
+    //   this.forceUpdate(()=> console.log('forced the update'));
+    // });
+    // console.log('Header componentWillMount() - loggedin user is - ', mainStore.getState());
+  }
+  doLogin()
+  {
+    console.log('Header component::doLogin-- before Login call');
+    Login();
+    //after loging call
+    console.log('Header component::doLogin-- after loging call  user is -', mainStore.getState());
+    
+  }
+  doLogout()
+  {
+    console.log('Header component::doLogout-- before Login call');
+    Logout();
+    //after loging call
+    console.log('Header component::doLogout-- after loging call  user is -', mainStore.getState());
+    
+  }
   renderContent(){
-    console.log('in renderContent  '+ this.props.auth);
-    switch(this.props.auth){
+    console.log('in Header component renderContent  '+ mainStore.getState());
+    switch(mainStore.getState()){
         case null:
-            return ;
         case false:
-            return <li><a href='/auth/google'>Login With Google</a></li>;
+            return (
+              <li>
+              <a id='btnLogin' onClick={this.doLogin.bind(this)}>Login With Google</a>
+            </li>);
+
         default:
             return [
             <li key='1'>
@@ -29,9 +57,9 @@ class Header extends Component
               </a>
             </li>,
             <li key='4'>
-            <a href='/api/logout'>
-              Google Logout
-            </a>
+            <li>
+            <a id='btnLogout' onClick={this.doLogout.bind(this)}>Logout</a>
+            </li>;
           </li>
         ];
     }
