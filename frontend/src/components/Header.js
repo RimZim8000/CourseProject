@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import  {mainStore} from '../mainStore'
+import { Link } from "react-router-dom";
 import Login , {Logout} from '../Auth/GoogAuth'
 class Header extends Component
 {
@@ -29,8 +30,9 @@ class Header extends Component
     
   }
   renderContent(){
-    console.log('in Header component renderContent  '+ mainStore.getState());
-    switch(mainStore.getState()){
+    console.log('in Header component renderContent  '+ mainStore.getState().payLoad);
+    switch(mainStore.getState().payLoad){
+        case undefined:
         case null:
         case false:
             return (
@@ -40,27 +42,10 @@ class Header extends Component
 
         default:
             return [
-            <li key='1'>
-              <a href='/api/New'>
-                New
-              </a>
-              </li>,
-            <li key='2'>
-              <a href='/api/Items'>
-                Items
-            {/* My Items:{this.props.auth.credits} */} 
-              </a>
-            </li>,
-            <li key='3'>
-              <a href='/api/register'>
-                Register
-              </a>
-            </li>,
-            <li key='4'>
-            <li>
-            <a id='btnLogout' onClick={this.doLogout.bind(this)}>Logout</a>
-            </li>;
-          </li>
+            <li key='1'><a href='/api/New'>New</a></li>,
+            <li key='2'><Link to={mainStore.getState().payLoad ? '/MyItems': '/'}>Items</Link></li>,
+            <li key='3'><a href='/api/register'>Register</a></li>,
+            <li key='4'><a id='btnLogout' onClick={this.doLogout.bind(this)}>Logout</a></li>
         ];
     }
   }

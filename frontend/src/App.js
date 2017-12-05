@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 //import {connect} from 'react-redux'
 import Header from './components/Header';
+import Dashboard from './components/Dashboard';
 import  {mainStore} from './mainStore';
 
 import './App.css';
 //const Header = () => <h1>Header</h1>;
-const Dashboard = () => <h2>Dashboard</h2>;
+//const Dashboard = () => <h2>Dashboard</h2>;
 const NewItem = () => <h1>NewItem</h1>;
 const Landing = () => <h1>Landing</h1>;
 const Settings = () => <h1>Settings</h1>;
@@ -15,14 +16,15 @@ class App extends Component {
   {
     mainStore.subscribe(() =>{
       //refresh the screen
-      console.log('in App:componentWillMount():mainStore.subscribe(() =>loggedin user is - ', mainStore.getState() );
+      console.log('in App:componentWillMount():mainStore.subscribe(() =>loggedin user is - ', mainStore.getState().payLoad );
+      console.log('in App:componentWillMount():mainStore.subscribe(() =>arrrived data is  - ', mainStore.getState().dataPayload );
       this.forceUpdate(()=> console.log('App::componentWillMount():mainStore.subscribe:: after forced the update'));
     });
-    console.log('App::Header componentWillMount() - loggedin user is - ', mainStore.getState());
+    console.log('App::Header componentWillMount() - loggedin user is - ', mainStore.getState().payLoad);
   }
   componentDidMount()
   {
-    console.log('in----- class App extends Component::componentDidMount() ' , mainStore.getState());
+    console.log('in----- class App extends Component::componentDidMount() ' , mainStore.getState().payLoad);
   }
   render() {
     return (
