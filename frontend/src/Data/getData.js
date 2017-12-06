@@ -13,8 +13,8 @@ class DataCollector
                let newState = [];
                var items = JSON.parse(itemsString);  
                for (let item in items) {
-                 console.log(items[item].title);
-                 console.log(items[item].user);
+                //  console.log(items[item].title);
+                //  console.log(items[item].user);
                  newState.push({
                    id: item,
                    title: items[item].title,
@@ -22,7 +22,7 @@ class DataCollector
                    
                  });
                }
-               mainStore.dispatch({type: 'DATA_READY',dataPayload:newState});
+               mainStore.dispatch({type: 'DATA_READY',payLoad:newState});
                
           })
           .catch(error => {                  // 3

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import  {mainStore} from '../mainStore'
+import  {mainStore} from '../mainStore';
 import { Link } from "react-router-dom";
 import Login , {Logout} from '../Auth/GoogAuth'
 class Header extends Component
@@ -18,20 +18,20 @@ class Header extends Component
     console.log('Header component::doLogin-- before Login call');
     Login();
     //after loging call
-    console.log('Header component::doLogin-- after loging call  user is -', mainStore.getState());
+    console.log('Header component::doLogin-- after loging call  user is -', mainStore.getState().login.payLoad);
     
   }
   doLogout()
   {
-    console.log('Header component::doLogout-- before Login call');
+    console.log('Header component::doLogout-- before Logout call');
     Logout();
     //after loging call
-    console.log('Header component::doLogout-- after loging call  user is -', mainStore.getState());
+    console.log('Header component::doLogout-- after logout call  user is -', mainStore.getState().login.payLoad);
     
   }
   renderContent(){
-    console.log('in Header component renderContent  '+ mainStore.getState().payLoad);
-    switch(mainStore.getState().payLoad){
+    console.log('in Header component renderContent  '+ mainStore.getState().login.payLoad);
+    switch(mainStore.getState().login.payLoad){
         case undefined:
         case null:
         case false:
@@ -43,7 +43,8 @@ class Header extends Component
         default:
             return [
             <li key='1'><a href='/api/New'>New</a></li>,
-            <li key='2'><Link to={mainStore.getState().payLoad ? '/MyItems': '/'}>Items</Link></li>,
+            <li key='2'><Link to={
+              mainStore.getState().data && mainStore.getState().data.payLoad ? '/Landing': '/'}>MyItems</Link></li>,
             <li key='3'><a href='/api/register'>Register</a></li>,
             <li key='4'><a id='btnLogout' onClick={this.doLogout.bind(this)}>Logout</a></li>
         ];

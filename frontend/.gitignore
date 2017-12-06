@@ -1,2 +1,8 @@
 node_modules
 firebase.js
+.env
+.env.local
+.env.development
+.env.production
+.env.dev
+.env.prod

@@ -1,24 +1,22 @@
-export default function loginReducer(state = {}, action) {
-  var retState = {...state};
-  if (action.payLoad != undefined ){
-    retState = {
-      dataPayload:{...state.dataPayload},
-      payLoad: {...action.payLoad}
-    }
-  };
-  if (action.dataPayload != undefined){
-    retState = {
-      dataPayload: {...action.dataPayload},
-      payLoad:{...state.payLoad}
-    }
-  };
-    
+export default function loginReducer(state = false, action) {
   
+ 
   switch (action.type) {
-      case 'DATA_READY':
-        return retState;
       case 'USER_LOGIN':
+      {
+        var retState = {...state};
+        if (action.payLoad !== undefined ){
+          retState = {
+            payLoad: {...action.payLoad}
+          }
+        };
+         if (action.payLoad === false ){
+          retState = {
+            payLoad: false
+          }
+        };
         return retState;
+      }
       default:
         return state;
     }

@@ -15,7 +15,7 @@ namespace ReactAppDataSource
         public Items()
         {
             cs = new List<Item>();
-            for (int i=0; i<100; i++)
+            for (int i=0; i<10; i++)
             {
                 cs.Add(new Item{Id=i, title="title"+i.ToString(), user="Rim Zim"});
             }

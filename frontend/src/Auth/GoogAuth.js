@@ -10,8 +10,8 @@ import DataCollector from '../Data/getData';
         auth.signInWithPopup(provider)
         .then(
             (result) => {
-                mainStore.dispatch({type: 'USER_LOGIN',payLoad:result.user.uid});
-                console.log('in Login function - user is - ', result.user.uid);
+                mainStore.dispatch({type: 'USER_LOGIN',payLoad:result.user.displayName});
+                console.log('in Login function - user is - ', result.user.displayName);
                 let d = new DataCollector();
                 d.getData();
             }
@@ -29,6 +29,7 @@ export function Logout()
     
       auth.signOut().then(()=> {
         mainStore.dispatch({type: 'USER_LOGIN',payLoad:false});
+        mainStore.dispatch({type: 'DATA_READY',payLoad:null});
         console.log('in export function Logout()-- after Logged out ');
       });
 }

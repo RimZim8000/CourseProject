@@ -1,10 +1,12 @@
 import { createStore } from 'redux';
-import loginReducer from './reducers/loginReducer';
+import {combineReducers} from 'redux';
+// import { reducer as reduxForm } from ';
+import reducers from './reducers';
 
 export var mainStore;
 export default function initiateMainStore()
 {
-    mainStore = createStore(loginReducer);
+    mainStore = createStore(reducers);
     return mainStore;
 }
 
