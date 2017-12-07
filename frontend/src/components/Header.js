@@ -42,10 +42,12 @@ class Header extends Component
 
         default:
             return [
-            <li key='1'><a href='/api/New'>New</a></li>,
+            <li key='1'><Link to={
+              mainStore.getState().data && mainStore.getState().data.payLoad ? '/MyItems': '/'}>New Item</Link></li>,
             <li key='2'><Link to={
-              mainStore.getState().data && mainStore.getState().data.payLoad ? '/Landing': '/'}>MyItems</Link></li>,
-            <li key='3'><a href='/api/register'>Register</a></li>,
+              mainStore.getState().data && mainStore.getState().data.payLoad ? '/MyItems': '/'}>MyItems</Link></li>,
+            <li key='3'><Link to={
+              mainStore.getState().data && mainStore.getState().data.payLoad ? '/MyItems': '/'}>Register</Link></li>,
             <li key='4'><a id='btnLogout' onClick={this.doLogout.bind(this)}>Logout</a></li>
         ];
     }

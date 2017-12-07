@@ -2,14 +2,55 @@ import React, {Component} from 'react';
 import  {mainStore} from '../mainStore';
 
 class Landing extends Component { 
+  getRows(arrayOfJSONObjects)
+  {
+    var retArrayOfRows = [];
+    var len = 100; //arrayOfJSONObjects.length;
+    for (var i=0; i< len; i++){
+      var row=[];
+      if (arrayOfJSONObjects[i] !== null && arrayOfJSONObjects[i] !== undefined)
+      {
+        var oneRow = arrayOfJSONObjects[i];
+        if(oneRow !== null && oneRow !== undefined)
+        {
+          for (var name in oneRow){
+          row.push(<td>{oneRow[name]}</td>);
+          }
+          retArrayOfRows.push(<tr>{row}</tr>);
+        }
+      }
+    }
+    return retArrayOfRows;
+  }
+
+  getHeaders(arrayOfJSONObjects)
+  {
+
+    var columns=[];
+    var firstRow = arrayOfJSONObjects[0];
+    if (firstRow !== null && firstRow !== undefined)
+    { 
+      //console.log(firstRow.length);
+      for (var name in firstRow){
+      columns.push(<th>{name}</th>);
+      }
+    }
+    return columns;
+  }
+  
+  //JSON.stringify
     myData() {
-        return ( <h4>
+        return ( <div>
       {(mainStore.getState().data !== null 
         && mainStore.getState().data.payLoad !== undefined
         && mainStore.getState().data.payLoad !== false ) 
-        ?' Your data : ' + JSON.stringify(mainStore.getState().data.payLoad)  
-        : '.... So that we can get your data from the datastore'})
-        </h4>
+        ?
+        <table className='blueTable'>
+         <tr>{this.getHeaders(mainStore.getState().data.payLoad)} </tr>
+          {this.getRows(mainStore.getState().data.payLoad)}
+        </table> 
+        : '.... So that we can get your data from the datastore'}
+        </div>
         );
     }
     render(){
@@ -39,7 +80,7 @@ class Landing extends Component {
                     && mainStore.getState().login !== false
                     && mainStore.getState().login.payLoad !== false ) 
                     ? 
-                      JSON.stringify(mainStore.getState().login.payLoad) 
+                      mainStore.getState().login.payLoad.name 
                         : 'Please Login using Google Account' } 
         </h3>
         </div>
