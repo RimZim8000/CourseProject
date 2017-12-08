@@ -14,4 +14,29 @@ export function getMainStore()
 { 
     return mainStore;
 }
- 
+
+export function isUserAuthenticated()
+{
+    if (mainStore.getState().login !== null &&
+        mainStore.getState().login !== undefined &&
+        mainStore.getState().login !== false &&
+        mainStore.getState().login.payLoad !== null &&
+        mainStore.getState().login.payLoad !== undefined &&
+        mainStore.getState().login.payLoad !== '' &&
+        mainStore.getState().login.payLoad !== false )
+        return true;
+    else return false;
+}
+
+export function getUserName()
+{
+    if (mainStore.getState().login !== null &&
+        mainStore.getState().login !== undefined &&
+        mainStore.getState().login !== false &&
+        mainStore.getState().login.payLoad !== null &&
+        mainStore.getState().login.payLoad !== undefined &&
+        mainStore.getState().login.payLoad !== '' &&
+        mainStore.getState().login.payLoad !== false )
+        return mainStore.getState().login.payLoad.name;
+    else return '';
+}

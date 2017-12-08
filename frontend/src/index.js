@@ -19,4 +19,6 @@ registerServiceWorker();
 
 console.log('In Index.js. REACT_APP_GOOGLE_KEY is ', process.env.REACT_APP_GOOGLE_KEY);
 console.log('our env is ', process.env.NODE_ENV);
+console.log('our env is ', process.env.REACT_APP_DATASOURCE_USERS);
+
 console.log('our all env variables are  ', process.env);

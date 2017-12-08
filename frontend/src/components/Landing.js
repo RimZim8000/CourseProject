@@ -46,8 +46,10 @@ class Landing extends Component {
         && mainStore.getState().data.payLoad !== false ) 
         ?
         <table className='blueTable'>
+         <tbody>
          <tr>{this.getHeaders(mainStore.getState().data.payLoad)} </tr>
           {this.getRows(mainStore.getState().data.payLoad)}
+          </tbody>
         </table> 
         : '.... So that we can get your data from the datastore'}
         </div>
@@ -74,13 +76,14 @@ class Landing extends Component {
     return (
       <div className='myContainer'>
       <div>
+      <h5>Welcome to the CourseProject 2017  </h5>
         <h3>
-        Hi There : { (mainStore.getState().login.payLoad !== undefined
+        { (mainStore.getState().login.payLoad !== undefined
                     && mainStore.getState().login !== null
                     && mainStore.getState().login !== false
                     && mainStore.getState().login.payLoad !== false ) 
                     ? 
-                      mainStore.getState().login.payLoad.name 
+                     'Hello, ' + mainStore.getState().login.payLoad.name 
                         : 'Please Login using Google Account' } 
         </h3>
         </div>

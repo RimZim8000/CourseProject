@@ -1,0 +1,11 @@
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\bin\Release\netcoreapp2.0\ReactAppDataSource.deps.json
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\bin\Release\netcoreapp2.0\ReactAppDataSource.runtimeconfig.json
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\bin\Release\netcoreapp2.0\ReactAppDataSource.runtimeconfig.dev.json
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\bin\Release\netcoreapp2.0\ReactAppDataSource.dll
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\bin\Release\netcoreapp2.0\ReactAppDataSource.pdb
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\obj\Release\netcoreapp2.0\ReactAppDataSource.csprojResolveAssemblyReference.cache
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\obj\Release\netcoreapp2.0\ReactAppDataSource.csproj.CoreCompileInputs.cache
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\obj\Release\netcoreapp2.0\ReactAppDataSource.AssemblyInfoInputs.cache
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\obj\Release\netcoreapp2.0\ReactAppDataSource.AssemblyInfo.cs
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\obj\Release\netcoreapp2.0\ReactAppDataSource.dll
+E:\Projects\learn-react\MVP\CourseProject\backend\ReactAppDataSource\ReactAppDataSource\obj\Release\netcoreapp2.0\ReactAppDataSource.pdb
