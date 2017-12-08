@@ -24,8 +24,10 @@ export function isUserAuthenticated()
         mainStore.getState().login.payLoad !== undefined &&
         mainStore.getState().login.payLoad !== '' &&
         mainStore.getState().login.payLoad !== false )
-        return true;
-    else return false;
+        {
+            return true;
+        }
+    return false;
 }
 
 export function getUserName()
@@ -37,6 +39,20 @@ export function getUserName()
         mainStore.getState().login.payLoad !== undefined &&
         mainStore.getState().login.payLoad !== '' &&
         mainStore.getState().login.payLoad !== false )
-        return mainStore.getState().login.payLoad.name;
-    else return '';
+        {
+            return mainStore.getState().login.payLoad.name;
+        }
+    return '';
 }
+
+// export function isDataActive()
+// {
+    // if (mainStore.getState().login.payLoad !== undefined
+    // && mainStore.getState().login !== null
+    // && mainStore.getState().login !== false
+    // && mainStore.getState().login.payLoad !== false )
+//     {
+//         return true;
+//     }
+//     return false;
+// }

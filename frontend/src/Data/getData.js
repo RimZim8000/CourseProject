@@ -13,9 +13,10 @@ class DataCollector
                   mode: 'cors',
                   cache: 'default' };
     //var myRequest = new Request(urlForData,myInit);
+    var urlForGetContactData = process.env.REACT_APP_DATASOURCE_CONTACTS;
     var urlForGetUserData = process.env.REACT_APP_DATASOURCE_USERS;
-    console.log('our data source is ', urlForGetUserData);
-    var myRequest = new Request(urlForGetUserData);
+    console.log('our data source is ', urlForGetContactData);//urlForGetUserData);
+    var myRequest = new Request(urlForGetContactData);//(urlForGetUserData);
     
     fetch(myRequest)
     //fetch('http://courseprojectdatasource2017.azurewebsites.net/api/items')

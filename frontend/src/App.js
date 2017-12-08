@@ -1,10 +1,10 @@
 import React, { Component, Layout } from "react";
 import { Route, BrowserRouter, Switch  } from "react-router-dom";
 //import {connect} from 'react-redux'
-import Header from './components/Header';
-import Landing from './components/Landing';
-import Dashboard from './components/Dashboard';
-import MyNewItem from './components/MyNewItem';
+import Header from './Components/Header';
+import Landing from './Components/Landing';
+import Dashboard from './Components/Dashboard';
+import MyNewItem from './Components/MyNewItem';
 import  {mainStore} from './mainStore';
 
 import './App.css';

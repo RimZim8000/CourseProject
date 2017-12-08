@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import mainStore, {isUserAuthenticated, getUserName} from '../mainStore';
+import mainStore, {isUserAuthenticated, getUserName, isDataActive} from '../mainStore';
 
 class MyNewItem extends Component
 {

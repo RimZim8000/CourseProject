@@ -17,6 +17,7 @@ namespace ReactAppDataSource
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -26,6 +27,7 @@ namespace ReactAppDataSource
         {
             services.AddCors();
             services.AddMvc();
+            services.AddSingleton<IContactsRepository, ContactsRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
         }
 
