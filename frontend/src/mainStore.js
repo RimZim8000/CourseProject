@@ -45,14 +45,14 @@ export function getUserName()
     return '';
 }
 
-// export function isDataActive()
-// {
-    // if (mainStore.getState().login.payLoad !== undefined
-    // && mainStore.getState().login !== null
-    // && mainStore.getState().login !== false
-    // && mainStore.getState().login.payLoad !== false )
-//     {
-//         return true;
-//     }
-//     return false;
-// }
+export function isDataActive()
+{
+    if (mainStore.getState().login.payLoad !== undefined
+    && mainStore.getState().login !== null
+    && mainStore.getState().login !== false
+    && mainStore.getState().login.payLoad !== false )
+    {
+        return true;
+    }
+    return false;
+}

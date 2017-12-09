@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import  {mainStore} from '../mainStore';
+import  {mainStore, isDataActive} from '../mainStore';
 import { Link } from "react-router-dom";
 import Login , {Logout} from '../Auth/GoogAuth'
 class Header extends Component
@@ -43,11 +43,11 @@ class Header extends Component
         default:
             return [
             <li key='1'><Link to={
-              mainStore.getState().data && mainStore.getState().data.payLoad ? '/MyItems': '/'}>New Item</Link></li>,
+              isDataActive()  ? '/MyItems': '/'}>New Item</Link></li>,
             <li key='2'><Link to={
-              mainStore.getState().data && mainStore.getState().data.payLoad ? '/MyItems': '/'}>MyItems</Link></li>,
+              isDataActive()  ? '/MyItems': '/'}>MyItems</Link></li>,
             <li key='3'><Link to={
-              mainStore.getState().data && mainStore.getState().data.payLoad ? '/MyItems': '/'}>Register</Link></li>,
+              isDataActive() ? '/MyItems': '/'}>Register</Link></li>,
             <li key='4'><a id='btnLogout' onClick={this.doLogout.bind(this)}>Logout</a></li>
         ];
     }

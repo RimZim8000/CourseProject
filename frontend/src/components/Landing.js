@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import  {mainStore} from '../mainStore';
-
+import  {mainStore, isDataActive} from '../mainStore';
+import AddItem from './AddItem';
+import { Link } from "react-router-dom";
 class Landing extends Component { 
   getRows(arrayOfJSONObjects)
   {
@@ -11,10 +12,18 @@ class Landing extends Component {
       if (arrayOfJSONObjects[i] !== null && arrayOfJSONObjects[i] !== undefined)
       {
         var oneRow = arrayOfJSONObjects[i];
+        var columnNumberForLink = 1;
+        var counter = 0;
         if(oneRow !== null && oneRow !== undefined)
         {
           for (var name in oneRow){
-          row.push(<td>{oneRow[name]}</td>);
+            if (counter == columnNumberForLink){
+              row.push(<td><Link to={'/MyItems'}>{oneRow[name]}</Link></td>);
+            }
+            else {
+              row.push(<td>{oneRow[name]}</td>);
+            }
+            counter++;
           }
           retArrayOfRows.push(<tr>{row}</tr>);
         }
@@ -25,21 +34,19 @@ class Landing extends Component {
 
   getHeaders(arrayOfJSONObjects)
   {
-
     var columns=[];
     var firstRow = arrayOfJSONObjects[0];
     if (firstRow !== null && firstRow !== undefined)
     { 
       //console.log(firstRow.length);
       for (var name in firstRow){
-      columns.push(<th>{name}</th>);
+        columns.push(<th>{name}</th>);
       }
     }
     return columns;
   }
   
-  //JSON.stringify
-    myData() {
+    myRenderData() {
         return ( <div>
       {(mainStore.getState().data !== null 
         && mainStore.getState().data.payLoad !== undefined
@@ -61,42 +68,29 @@ class Landing extends Component {
     console.log('mainStore.getState().login', mainStore.getState().login);
     console.log('mainStore.getState().login.payLoad', mainStore.getState().login.payLoad);
     
-    //console.log('mainStore.getState().data', mainStore.getState().data);
     console.log('mainStore.getState().data', mainStore.getState().data);
     console.log('mainStore.getState().data.payLoad', mainStore.getState().data.payLoad);
-    // function availableData () 
-    // {
-    //   return ((mainStore.getState().data !== null 
-    //       && Object.keys(mainStore.getState().data.payLoad).length === 0  
-    //       && mainStore.getState().data.payLoad !== false ) 
-    //     ? JSON.stringify(mainStore.getState().data.payLoad) 
-    //     : ' No data');
-    // }
     
     return (
       <div className='myContainer'>
-      <div>
-      <h5>Welcome to the CourseProject 2017  </h5>
-        <h3>
-        { (mainStore.getState().login.payLoad !== undefined
-                    && mainStore.getState().login !== null
-                    && mainStore.getState().login !== false
-                    && mainStore.getState().login.payLoad !== false ) 
-                    ? 
-                     'Hello, ' + mainStore.getState().login.payLoad.name 
-                        : 'Please Login using Google Account' } 
-        </h3>
+        <div>
+        <h5>Welcome to the CourseProject 2017  </h5>
+          <h3>
+          { (isDataActive() ) ? 'Hello, ' + mainStore.getState().login.payLoad.name 
+                              : 'Please Login using Google Account' } 
+          </h3>
         </div>
         <br />
-  
-      
-    
-        <div>
-        
-          { this.myData() }
-        
-        </div>
-        </div>
+            <div>
+              <div>
+                { this.myRenderData() }
+              </div>
+              <div>
+              { (isDataActive() ) ? <AddItem />
+                              : '_____________' } 
+              </div>
+            </div>
+      </div>
     ); 
   }     
   };
