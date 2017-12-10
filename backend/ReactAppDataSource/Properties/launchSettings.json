@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:55528/",
+      "applicationUrl": "http://localhost:57708/",
       "sslPort": 0
     }
   },
@@ -19,11 +19,11 @@
     "ReactAppDataSource": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/items",
+      "launchUrl": "api/Contacts",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:55529/"
+      "applicationUrl": "http://localhost:57709/"
     }
   }
 }

@@ -29,7 +29,7 @@ class App extends Component {
     console.log('in----- class App extends Component::componentDidMount() ' , mainStore.getState().login);
   }
   render() {
-    return (
+     return (
       <BrowserRouter>
         <div className='myContainer'>
           <Header />
@@ -37,7 +37,7 @@ class App extends Component {
             <Route exact path='/' component={Landing}> </Route>
             <Route path='/MyItems' component={Landing}> </Route>
             <Route path='/MyNewItem' component={MyNewItem}> </Route>
-            <Route path='/Settings' component={Settings}> </Route>
+            <Route path='/Settings' component={Dashboard}> </Route>
           </Switch>
         </div>
       </BrowserRouter>

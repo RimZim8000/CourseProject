@@ -6,12 +6,7 @@ class Header extends Component
 {
   componentWillMount()
   {
-    // mainStore.subscribe(() =>{
-    //   //refresh the screen
-    //   console.log('in Header:componentWillMount():mainStore.subscribe(() =>loggedin user is - ', mainStore.getState() );
-    //   this.forceUpdate(()=> console.log('forced the update'));
-    // });
-    // console.log('Header componentWillMount() - loggedin user is - ', mainStore.getState());
+    
   }
   doLogin()
   {
@@ -42,12 +37,12 @@ class Header extends Component
 
         default:
             return [
-            <li key='1'><Link to={
-              isDataActive()  ? '/MyItems': '/'}>New Item</Link></li>,
+            <li key='1'><Link 
+              to={{pathname : (isDataActive())  ? '/MyItems': '/', state:{id: "0"}}}>New Item</Link></li>,
             <li key='2'><Link to={
-              isDataActive()  ? '/MyItems': '/'}>MyItems</Link></li>,
+              isDataActive()  ? '/MyItems/0': '/'}>MyItems</Link></li>,
             <li key='3'><Link to={
-              isDataActive() ? '/MyItems': '/'}>Register</Link></li>,
+              isDataActive() ? '/Settings': '/'}>Dashboard</Link></li>,
             <li key='4'><a id='btnLogout' onClick={this.doLogout.bind(this)}>Logout</a></li>
         ];
     }

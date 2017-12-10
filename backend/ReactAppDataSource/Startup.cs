@@ -17,7 +17,6 @@ namespace ReactAppDataSource
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -38,6 +37,7 @@ namespace ReactAppDataSource
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseCors(builder => builder.AllowAnyOrigin());
             app.UseMvc();
         }

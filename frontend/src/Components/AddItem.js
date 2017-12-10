@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import '../AddItem.css';
-import  {mainStore} from '../mainStore';
+import  {mainStore,isDataActive, getData} from '../mainStore';
 // import firebase, { auth, provider } from '../firebase.js';
 
 
@@ -39,23 +39,53 @@ export class AddItem extends Component{
     handleChange(e) {
       this.setState({[e.target.name]: e.target.value});
     }
-    render(){
-      return (
-          <section className='add-item'>
+
+    renderComponent( dataId)
+    {
+      console.log('AddItem:renderComponent(): this.props.dataId ', dataId);
+      var row = (dataId !== undefined) ? dataId :0;
+      console.log ('AddItem:renderComponent(): selected row = ', row);
+      console.log ('AddItem:renderComponent(): data  = ', 
+            (isDataActive()  && getData()[row] !== null && getData()[row] !== undefined ) 
+            ? getData()[row] : 'Data is not available');
+      
+      if(isDataActive()  && getData()[row] !== null && getData()[row] !== undefined )
+      {
+        return (
+        <section className='add-item'>
             <form onSubmit={this.handleSubmit}>
               <input type="text" style={{width:'50%'}} name="first_name" placeholder="First Name" 
-                onChange={this.handleChange} value={this.state.currentItem} />
+                onChange={this.handleChange} 
+                value={(isDataActive()  && getData()[row] !== undefined) ?  getData()[row].first_name : 'first_name data is not available'} />
               <input type="text" style={{width:'50%'}} name="last_name" placeholder="Last Name" 
-                onChange={this.handleChange} value={this.state.currentItem} />
+                onChange={this.handleChange} 
+                value={(isDataActive() ) ?  getData()[row].last_name : 'last_name data is not available'} />
                 <input type="text" name="email" placeholder="Email" 
-                onChange={this.handleChange} value={this.state.currentItem} />
+                onChange={this.handleChange} 
+                value={(isDataActive() ) ?  getData()[row].email : 'email data is not available'} />
                 <input type="text" name="subject" placeholder="Subject" 
-                onChange={this.handleChange} value={this.state.currentItem} />
-                <input type="text" name="Description" placeholder="Description" 
-                onChange={this.handleChange} value={this.state.currentItem} />
-              <button>Add Item</button>
+                onChange={this.handleChange} 
+                value={(isDataActive() ) ?  getData()[row].subject : 'subject data is not available'} />
+                <input type="textarea" rows="3" name="Description" placeholder="Description" 
+                onChange={this.handleChange} 
+                value={(isDataActive() ) ?  getData()[row].description : 'description data is not available'} />
+                <a className='btn-floating btn-flat red'> <i className='material-icons'>+</i></a>
             </form>
         </section>
+        )
+      }
+      else
+      {
+        return (
+          <div>
+            <h3>Data hasn't available</h3>
+          </div>
+        )
+      }
+    }
+    render(dataId){
+      return (
+        this.renderComponent(this.props.dataId)
       );
     };
   }
