@@ -22,7 +22,8 @@ class Landing extends Component {
       var values = _.values(row);
       values.push(
         <td>
-          <Link style={{margin: '10px'}} to={{ pathname:'/MyItems', state:{id:arrayOfJSONObjects[i].id} }}>Edit</Link>
+          {/* <Link style={{margin: '10px'}} to={{ pathname:'/MyItems', state:{id:arrayOfJSONObjects[i].id} }}>Edit</Link> */}
+          <Link style={{margin: '10px'}} to={{ pathname:'/MyItems', state:{id:i} }}>Edit</Link>
           <Link style={{margin: '10px'}}to={'/MyNewItem'}>Delete</Link>
         </td>);
       // console.log(values.length);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import '../AddItem.css';
-import  {mainStore,isDataActive, getData} from '../mainStore';
+import  {mainStore,isDataActive, getData, getIDfromRowID} from '../mainStore';
 // import firebase, { auth, provider } from '../firebase.js';
 
 
@@ -43,7 +43,8 @@ export class AddItem extends Component{
     renderComponent( dataId)
     {
       console.log('AddItem:renderComponent(): this.props.dataId ', dataId);
-      var row = (dataId !== undefined) ? dataId :0;
+      var tempRowID = (dataId !== undefined) ? dataId :0;
+      var row = tempRowID;//getIDfromRowID(tempRowID);
       console.log ('AddItem:renderComponent(): selected row = ', row);
       console.log ('AddItem:renderComponent(): data  = ', 
             (isDataActive()  && getData()[row] !== null && getData()[row] !== undefined ) 

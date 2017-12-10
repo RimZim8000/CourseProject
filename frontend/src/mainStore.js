@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import {combineReducers} from 'redux';
 // import { reducer as reduxForm } from ';
 import reducers from './reducers';
-
+import _ from 'underscore';
 export var mainStore;
 export default function initiateMainStore()
 {
@@ -71,4 +71,23 @@ export function getData()
         return mainStore.getState().data.payLoad;
     }
     return false;
+}
+
+export function getIDfromRowID(tempRowID)
+{
+    var nRetID =  0;
+    if  ( isDataActive()) 
+    {
+        var data  = mainStore.getState().data.payLoad;
+        nRetID = _.findLastIndex(data, {
+        id: tempRowID
+      });
+      for(var i=0; i < data.length; i++)
+      {
+          if (data.id == tempRowID)
+          nRetID =i;
+          break;
+      }
+    }
+    return ((nRetID <0) ? 0 :nRetID);
 }
