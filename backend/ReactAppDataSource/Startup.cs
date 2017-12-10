@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ReactAppDataSource.Repositories;
+using ReactAppDataSource.Models;
 
 namespace ReactAppDataSource
 {
@@ -28,6 +29,8 @@ namespace ReactAppDataSource
             services.AddMvc();
             services.AddSingleton<IContactsRepository, ContactsRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
+            services.AddSingleton<IdocdbRepository<Product>, DocdbRepository<Product>>();
+            services.AddSingleton<IdocdbRepository<Contact>, DocdbRepository<Contact>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

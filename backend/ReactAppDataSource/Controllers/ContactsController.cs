@@ -5,52 +5,73 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ReactAppDataSource.Models;
+using Microsoft.Azure.Documents;
+using ReactAppDataSource.Repositories;
 
-namespace ReactAppDataSource.Repositories
+namespace ReactAppDataSource.Controllers
 {
-    //[Produces("application/json")]
+    [Produces("application/json")]
     [Route("api/Contacts")]
     public class ContactsController : Controller
     {
-        IContactsRepository _contactsRepo;
-        public ContactsController(IContactsRepository contactsRepo)
+        private IdocdbRepository<Contact> _repository;
+        private ContactsRepository _localContactsRepository;
+        public ContactsController(IdocdbRepository<Contact> repository)
         {
-            _contactsRepo = contactsRepo;
+            _repository = repository;
+            _repository.Initialize("Contacts");
+            _localContactsRepository = new ContactsRepository();
         }
-
-        // GET: api/Contacts
+        // GET: api/contacts
         [HttpGet]
-        public IEnumerable<Contact> GetContacts()
+        public async Task<IEnumerable<Contact>> GetContacts()
         {
-            return _contactsRepo.GetAll();
+            IEnumerable<Contact> lstContacts = await _repository.GetItemsAsync<Contact>();
+            return lstContacts;
         }
 
-        // GET: api/Contacts/5
+        // GET api/contact/1
         [HttpGet("{id}")]
-        public Contact GetContact(string id)
+        public async Task<Contact> Get(string id)
         {
-            return _contactsRepo.Get(id);
+            var retObj = await _repository.GetAsync(id);
+            return retObj;
         }
-        
-        // POST: api/Contacts
+
+        // POST api/contacts
         [HttpPost]
-        public void PostContact(Contact c)
+        public async Task<Document> Post(Contact inObj)
         {
-            _contactsRepo.Post(c);
+            //Contact retObj = await _repository.GetAsync("1");
+            bool retB = _repository.IsEmpty();
+            if (retB )//|| !retObj.id.Equals("1"))
+            {// if items with id=1 is not found, pill up the collection with local repo
+                // hopefully, this will need to be done ony once
+                foreach (var o in _localContactsRepository.GetAll())
+                {
+                    await _repository.CreateAsync(o);
+                }
+            }
+            // not post the incoming obj.
+            var document = await _repository.CreateAsync(inObj);
+            return document;
         }
-        
-        // PUT: api/Contacts/5
+
+        // PUT api/contacts/5
         [HttpPut("{id}")]
-        public void Put(string id, Contact c)
+        public async Task<Document> Put(string id, Contact inObj)
         {
-            _contactsRepo.Put(id, c);
+            //ContactsRepository contactsRepository = new ContactsRepository();
+            //Contact obj = contactsRepository.Get("1");
+            var document = await _repository.UpdateAsync(id, inObj);
+            return document;
         }
-        
-        // DELETE: api/ApiWithActions/5
+
+        // DELETE api/contacts/5
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public async Task Delete(string id)
         {
-            _contactsRepo.Delete(id);
+            await _repository.DeleteAsync(id);
         }
     }
 }
