@@ -13,7 +13,7 @@ namespace ReactAppDataSource
         public static readonly string DatabaseId = "CosmosDataSocurceForMVP";//courseproject2017-cosmos-datadb
         private string CollectionId;// = "Products";
         private static readonly string AzureEndpoint = "https://courseproject2017-cosmos-datadb.documents.azure.com:443/";
-        private static readonly string AzureAuthKey = "";
+        private static readonly string AzureAuthKey = "yA4mHNN0Qlb9U8OXM4gR2NbILldEdDKYmc6iqguQRIElAtFKoQRw1obP0QbCx00tw2apny1YWfOk8ZWVvZKb2g==";
         private static DocumentClient client;
 
         public void Initialize(string collectionId)
@@ -94,8 +94,8 @@ namespace ReactAppDataSource
             new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
             .AsDocumentQuery();
 
-            if (!query.HasMoreResults)
-                return false;
+            if (query.HasMoreResults)
+                return false;// it has records, that means it is not empty
 
             return true;
         }

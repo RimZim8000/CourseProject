@@ -27,10 +27,13 @@ namespace ReactAppDataSource
         {
             services.AddCors();
             services.AddMvc();
+            
             services.AddSingleton<IContactsRepository, ContactsRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddSingleton<IdocdbRepository<Product>, DocdbRepository<Product>>();
             services.AddSingleton<IdocdbRepository<Contact>, DocdbRepository<Contact>>();
+            services.AddMvc().AddXmlSerializerFormatters();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +44,7 @@ namespace ReactAppDataSource
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
         }
     }

@@ -84,7 +84,7 @@ export function getIDfromRowID(tempRowID)
       });
       for(var i=0; i < data.length; i++)
       {
-          if (data.id == tempRowID)
+          if (data.id === tempRowID)
           nRetID =i;
           break;
       }

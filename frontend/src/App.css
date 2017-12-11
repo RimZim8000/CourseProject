@@ -150,6 +150,22 @@ table.blueTable tfoot .links a{
 }
 .add-item {
   border-radius: 5px;
+  
+  border: 2px solid;
+  margin-right: 1px;
+  margin-left: 1px;
+  background-color: rgb(255,255,255);
+  padding: 1px 1px;
+  /* box-shadow: 0 3px 4px 0 rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.12), 0 1px 8px 0 rgba(0,0,0,.2); */
+  margin-top: 10px;  
+  /* margin-bottom: 34px;   */
+  width: 100%;
+  margin-right: auto;
+}
+
+.tableEncapsulatorDiv{
+  
+  border-radius: 5px;
   border-top: 1px solid #103D5D;
   border-bottom: 1px solid #103D5D;
   border-left: 1px solid #103D5D;
@@ -163,4 +179,35 @@ table.blueTable tfoot .links a{
   /* margin-bottom: 34px;   */
   width: 98%;
   margin-right: auto;
+  max-height: 300px;
+  overflow-x:auto;
+  /* overflow-y:scroll; */
+
 }
+.highlightedRow{
+  background-color:lightsteelblue;
+  font-weight: bold ;
+  font-size: large; 
+  border: 2px solid black;
+}
+
+table {    
+  border-collapse: collapse;    
+  width: 100%;
+  height: 500px;
+}
+td{   
+  font-size: small; 
+
+  text-align: left;    padding: 1px;
+}
+th {   
+  font-variant:small-caps;
+  color: white;
+  background-color:rgb(247, 131, 131);  
+
+  text-align: left;    
+  padding: 2px;
+}
+
+tr:hover {background-color: lightcyan;} 

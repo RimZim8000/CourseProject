@@ -10,7 +10,8 @@ using ReactAppDataSource.Repositories;
 
 namespace ReactAppDataSource.Controllers
 {
-    [Produces("application/json")]
+
+    //[Produces("application/json")]
     [Route("api/Contacts")]
     public class ContactsController : Controller
     {
