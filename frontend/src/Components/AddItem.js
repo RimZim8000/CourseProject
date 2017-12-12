@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import  {mainStore,isDataActive, getData,  getIDfromRowID} from '../mainStore';
+import getDataFromDB, {putData, deleteData, postData } from '../Data/getData';
 import DataCollector from '../Data/getData';
 
 export class AddItem extends Component{
@@ -40,6 +41,38 @@ export class AddItem extends Component{
 
     processLogIn(result) {this.setState({props:result.user});};
     componentWillMount () {
+      this.changStateData();
+    }
+    
+
+    handleDelete(rowIn, e) {
+      //e.preventDefault();
+      var data = getData()[rowIn];
+      
+      deleteData(data.id);
+      this.setState({id: data.id});
+    }
+
+    handleUpdate(rowIn, e) {
+      //e.preventDefault();
+      var data = getData()[rowIn];
+      
+      putData(this.state);
+      // this.setState({id: data.id});
+    }
+
+    handleCreate(rowIn, e) {
+      //e.preventDefault();
+      
+      postData(this.state);
+    }
+
+    handleChange(rowIn,e) {
+      this.setState({[e.target.name]: e.target.value});
+      //this.setState({row: rowIn});
+    }
+    changStateData()
+    {
       var tempRow = (this.props.dataId !== undefined) ? this.props.dataId :0;
       var data = getData()[tempRow];
       if (this.state.row !== tempRow)
@@ -52,38 +85,7 @@ export class AddItem extends Component{
         this.setState({subject: data.subject});
         this.setState({description: data.description});
       }
-      //auth.onAuthStateChanged((userIn) => {this.setState({user:userIn });});
-      //this.populateListWithItemsFromDB();
     }
-    insertItemIntoDB(){
-      let d = new DataCollector();
-      d.putData(this.state);
-    }
-
-    handleDelete(rowIn, e) {
-      e.preventDefault();
-      var data = getData()[rowIn];
-      let d = new DataCollector();
-      d.deleteData(data.id);
-      this.setState({id: data.id});
-    }
-
-    handleUpdate(e) {
-      e.preventDefault();
-      this.insertItemIntoDB();
-    }
-
-    handleSave(e) {
-      e.preventDefault();
-      //this.insertItemIntoDB();
-    }
-    handleChange(rowIn,e) {
-      this.setState({[e.target.name]: e.target.value});
-      this.setState({row: rowIn});
-      var data = getData()[rowIn];
-      this.setState({id: data.id});
-    }
-
     renderComponent( dataId)
     {
       console.log('AddItem:renderComponent(): this.props.dataId ', dataId);
@@ -103,11 +105,7 @@ export class AddItem extends Component{
         var s = this.state.subject;
         var d = this.state.description;
         if (row !== this.state.row ){ 
-          f = data.first_name;
-          l = data.last_name;
-          e = data.email;
-          s = data.subject;
-          d = data.description;
+          this.changStateData();
         }     
         return (
         <section style={{border:'1px solid black'}}>
@@ -154,6 +152,7 @@ export class AddItem extends Component{
               
               <button style={{margin:'10px'}} 
                 className="btn waves-effect waves-light" 
+                onClick={this.handleCreate.bind(this, row)}
                 type="button" name="CreateNew">Create New</button>
               
               <button style={{margin:'10px'}} 

@@ -41,7 +41,7 @@ namespace ReactAppDataSource.Controllers
 
         // POST api/contacts
         [HttpPost]
-        public async Task<Document> Post(Contact inObj)
+        public async Task<Document> Post([FromBody]Contact inObj)
         {
             //Contact retObj = await _repository.GetAsync("1");
             bool retB = _repository.IsEmpty();
@@ -60,7 +60,7 @@ namespace ReactAppDataSource.Controllers
 
         // PUT api/contacts/5
         [HttpPut("{id}")]
-        public async Task<Document> Put(string id, Contact inObj)
+        public async Task<Document> Put(string id, [FromBody]Contact inObj)
         {
             //ContactsRepository contactsRepository = new ContactsRepository();
             //Contact obj = contactsRepository.Get("1");

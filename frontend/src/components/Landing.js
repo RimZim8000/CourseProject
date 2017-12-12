@@ -20,15 +20,6 @@ class Landing extends Component {
       return (<td >{val}</td>);
       });
       var values = _.values(row);
-      // values.push(
-      //   <td>
-      //     {/* <Link style={{margin: '10px'}} to={{ pathname:'/MyItems', state:{id:arrayOfJSONObjects[i].id} }}>Edit</Link> */}
-      //     <Link style={{margin: '10px'}} to={{ pathname:'/MyItems', state:{id:i} }}>Edit</Link>
-      //     <Link style={{margin: '10px'}}to={'/MyNewItem'}>Delete</Link>
-      //   </td>);
-      // console.log('Landing:getGridRows(): assigned id to Row numer i= ' , i, '    is arrayOfJSONObjects[i]=  ', arrayOfJSONObjects[i]);
-//this works      retArrayOfRows.push(<tr id={arrayOfJSONObjects[i]} onClick={this.handleClick.bind(this, i)}>{values}</tr>);
-
 
 // if the row is selected, make its background red, else leave it alone
       let highlightedRow = (this.props.location.state !== undefined)? this.props.location.state.id:0;
@@ -79,24 +70,16 @@ class Landing extends Component {
         );
     }
     render(){
-      // console.log('mainStore ', mainStore);
-      // console.log('mainStore.getState()', mainStore.getState());
-      // console.log('mainStore.getState().login', mainStore.getState().login);
-      // console.log('mainStore.getState().login.payLoad', mainStore.getState().login.payLoad);
-      
-      // console.log('mainStore.getState().data', mainStore.getState().data);
-      // console.log('mainStore.getState().data.payLoad', mainStore.getState().data.payLoad);
       console.log('in Landing:render(): this.props.location ', this.props.location);
-      //if ( this.props.params.id === undefined) this.props.params.id=0;
       
     return (
       <div className='myContainer'>
         <div>
         <h5>Welcome to the CourseProject 2017  </h5>
-          <h3>
+          <h5>
           { (isDataActive() &&  isUserAuthenticated()) ? 'Hello, ' + mainStore.getState().login.payLoad.name 
                               : 'Please login using your Google Account' } 
-          </h3>
+          </h5>
         </div>
         <div >
           {(isDataActive() &&  isUserAuthenticated()) ?

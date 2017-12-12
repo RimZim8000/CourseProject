@@ -1,6 +1,6 @@
 import  { auth, provider } from './firebase';
 import  {mainStore} from '../mainStore';
-import DataCollector from '../Data/getData';
+import getDataFromDB from '../Data/getData';
 // class Authenticator
 // {
     export  default function Login()
@@ -17,8 +17,8 @@ import DataCollector from '../Data/getData';
                 };
                 mainStore.dispatch({type: 'USER_LOGIN', payLoad: retObj } );
                 console.log('in Login function - user is - ', retObj);
-                let d = new DataCollector();
-                d.getData();
+                
+                getDataFromDB();
             }
             );
         // var result = async auth.signInWithPopup(provider);

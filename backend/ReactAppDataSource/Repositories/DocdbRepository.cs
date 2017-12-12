@@ -13,7 +13,7 @@ namespace ReactAppDataSource
         public static readonly string DatabaseId = "CosmosDataSocurceForMVP";//courseproject2017-cosmos-datadb
         private string CollectionId;// = "Products";
         private static readonly string AzureEndpoint = "https://courseproject2017-cosmos-datadb.documents.azure.com:443/";
-        private static readonly string AzureAuthKey = "yA4mHNN0Qlb9U8OXM4gR2NbILldEdDKYmc6iqguQRIElAtFKoQRw1obP0QbCx00tw2apny1YWfOk8ZWVvZKb2g==";
+        private static readonly string AzureAuthKey = "UYLCt2GvuQ1RsUqczG8874w==";
         private static DocumentClient client;
 
         public void Initialize(string collectionId)

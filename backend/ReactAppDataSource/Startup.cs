@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ReactAppDataSource.Repositories;
 using ReactAppDataSource.Models;
+using ReactAppDataSource.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ReactAppDataSource
 {
@@ -27,7 +29,7 @@ namespace ReactAppDataSource
         {
             services.AddCors();
             services.AddMvc();
-            
+            services.AddSingleton<Controller, ValuesController>();
             services.AddSingleton<IContactsRepository, ContactsRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddSingleton<IdocdbRepository<Product>, DocdbRepository<Product>>();
