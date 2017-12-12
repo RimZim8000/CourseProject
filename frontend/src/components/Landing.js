@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
-import  {mainStore, getData, isDataActive,  isUserAuthenticated} from '../mainStore';
+import  {mainStore, getDataFromMainStore, isDataActive,  isUserAuthenticated} from '../mainStore';
 import AddItem from './AddItem';
 import { Link } from "react-router-dom";
 import _ from 'underscore';
 class Landing extends Component { 
   componentWillMount()
   {
-    console.log('Landing:componentWillMount(): this.props.params.id ', this.props.match.params.id);
+    console.log('Landing:componentWillMount(): this.props.params.id '
+      , this.props.match.params.id, ' time is - ', Date.now());
   }
   getGridRows(arrayOfJSONObjects)
   {
-    console.log('Landing:getGridRows(): this.props.location ', this.props.location);
+    console.log('Landing:getGridRows(): this.props.location '
+      , this.props.location, ' time is - ', Date.now());
     var mykeys = _.values(arrayOfJSONObjects);
-    console.log('Landing: getGridRows(arrayOfJSONObjects) - mykeys.length', mykeys.length);
+    console.log('Landing: getGridRows(arrayOfJSONObjects) - mykeys.length'
+      , mykeys.length, ' time is - ', Date.now());
     var retArrayOfRows = [];
     for (var i=0; i < arrayOfJSONObjects.length; i++)
     {
@@ -35,7 +38,8 @@ class Landing extends Component {
   }
   handleClick(i, e)
   {
-    console.log("Landing extends Component: table row clicked event info (i) is = ", i , "   an e is ", e);
+    console.log("Landing extends Component: table row clicked event info (i) is = "
+      , i , "   an e is ", e, ' time is - ', Date.now());
     
   }
   getGridHeaders(arrayOfJSONObjects)
@@ -60,8 +64,8 @@ class Landing extends Component {
         <div style={{border:'1px solid black'}}>
         <table className='responsive-table' style={{ maxHeight: '200px'}}>
          <tbody >
-         <tr>{this.getGridHeaders(getData())} </tr>
-          {this.getGridRows(getData())}
+         <tr>{this.getGridHeaders(getDataFromMainStore())} </tr>
+          {this.getGridRows(getDataFromMainStore())}
           </tbody>
         </table> 
          </div>
@@ -70,7 +74,7 @@ class Landing extends Component {
         );
     }
     render(){
-      console.log('in Landing:render(): this.props.location ', this.props.location);
+      console.log('in Landing:render(): this.props.location ', this.props.location, ' time is - ', Date.now());
       
     return (
       <div className='myContainer'>

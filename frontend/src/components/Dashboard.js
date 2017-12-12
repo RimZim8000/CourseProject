@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import  {mainStore} from '../mainStore';
+
 import 'materialize-css/dist/css/materialize.min.css';
 class Dashboard extends Component
 {

@@ -1,12 +1,12 @@
 import  { auth, provider } from './firebase';
 import  {mainStore} from '../mainStore';
-import getDataFromDB from '../Data/getData';
+import getDataDB from '../Data/Data';
 // class Authenticator
 // {
     export  default function Login()
     {
         console.log('In GoogAuth.js.:Login REACT_APP_GOOGLE_KEY is ', process.env.REACT_APP_GOOGLE_KEY);
-        
+        console.log('GoogAuth::Login function - Google Authentication started .... time is - ', Date.now() )
         auth.signInWithPopup(provider)
         .then(
             (result) => {
@@ -16,9 +16,9 @@ import getDataFromDB from '../Data/getData';
                     "uid" : result.user.uid,
                 };
                 mainStore.dispatch({type: 'USER_LOGIN', payLoad: retObj } );
-                console.log('in Login function - user is - ', retObj);
+                console.log('GoogAuth::Login function - user is - ', retObj, ' time is - ', Date.now() );
                 
-                getDataFromDB();
+                getDataDB();
             }
             );
         // var result = async auth.signInWithPopup(provider);

@@ -1,4 +1,4 @@
-import React, { Component, Layout } from "react";
+import React, { Component } from "react";
 import { Route, BrowserRouter, Switch  } from "react-router-dom";
 //import {connect} from 'react-redux'
 import Header from './Components/Header';
@@ -18,15 +18,22 @@ class App extends Component {
   {
     mainStore.subscribe(() =>{
       //refresh the screen
-      console.log('in App:componentWillMount():mainStore.subscribe(() =>loggedin user is - ', mainStore.getState().login );
-      console.log('in App:componentWillMount():mainStore.subscribe(() =>arrrived data is  - ', mainStore.getState().data );
-      this.forceUpdate(()=> console.log('App::componentWillMount():mainStore.subscribe:: after forced the update'));
+      console.log('in App:componentWillMount():mainStore.subscribe(() =>loggedin user is - '
+      , mainStore.getState().login, ' time is - ', Date.now() );
+      console.log('in App:componentWillMount():mainStore.subscribe(() =>arrrived data is  - '
+      , mainStore.getState().data, ' time is - ', Date.now()  );
+      this.forceUpdate(()=> {
+        console.log('App::componentWillMount():mainStore.subscribe:: after forced the update time ', Date.now())
+      }
+      );
     });
-    console.log('App::Header componentWillMount() - loggedin user is - ', mainStore.getState().login);
+    console.log('App::Header componentWillMount() - loggedin user is - '
+    , mainStore.getState().login, ' time is - ', Date.now() );
   }
   componentDidMount()
   {
-    console.log('in----- class App extends Component::componentDidMount() ' , mainStore.getState().login);
+    console.log('in----- class App extends Component::componentDidMount() ' 
+    , mainStore.getState().login, ' time is - ', Date.now() );
   }
   render() {
      return (

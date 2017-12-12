@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import  {mainStore,isDataActive, getData,  getIDfromRowID} from '../mainStore';
-import getDataFromDB, {putData, deleteData, postData } from '../Data/getData';
-import DataCollector from '../Data/getData';
+import  {isDataActive, getDataFromMainStore} from '../mainStore';
+import  {putDataDB, deleteDataDB, postDataDB } from '../Data/Data';
+
 
 export class AddItem extends Component{
     constructor(props)
@@ -11,8 +11,8 @@ export class AddItem extends Component{
       //this.handleSubmit = this.handleSubmit.bind(this);
       // this.onAuthStateChanged = this.processLogIn.bind(this);
       var tempRow = (props.dataId !== undefined) ? props.dataId :0;
-      var data = getData()[tempRow];
-      var temp = [];
+      var data = getDataFromMainStore()[tempRow];
+      
       if (isDataActive()  && data !== null && data !== undefined )
       {
           this.state = {
@@ -47,24 +47,22 @@ export class AddItem extends Component{
 
     handleDelete(rowIn, e) {
       //e.preventDefault();
-      var data = getData()[rowIn];
+      var data = getDataFromMainStore()[rowIn];
       
-      deleteData(data.id);
+      deleteDataDB(data.id);
       this.setState({id: data.id});
     }
 
     handleUpdate(rowIn, e) {
       //e.preventDefault();
-      var data = getData()[rowIn];
-      
-      putData(this.state);
+      putDataDB(this.state);
       // this.setState({id: data.id});
     }
 
     handleCreate(rowIn, e) {
       //e.preventDefault();
       
-      postData(this.state);
+      postDataDB(this.state);
     }
 
     handleChange(rowIn,e) {
@@ -74,7 +72,7 @@ export class AddItem extends Component{
     changStateData()
     {
       var tempRow = (this.props.dataId !== undefined) ? this.props.dataId :0;
-      var data = getData()[tempRow];
+      var data = getDataFromMainStore()[tempRow];
       if (this.state.row !== tempRow)
       {
         this.setState({row: tempRow});
@@ -88,14 +86,15 @@ export class AddItem extends Component{
     }
     renderComponent( dataId)
     {
-      console.log('AddItem:renderComponent(): this.props.dataId ', dataId);
+      console.log('AddItem:renderComponent(): this.props.dataId '
+      , dataId, ' time is - ', Date.now() );
       var tempRowID = (dataId !== undefined) ? dataId :0;
       var row = tempRowID;//getIDfromRowID(tempRowID);
-      console.log ('AddItem:renderComponent(): selected row = ', row);
+      console.log ('AddItem:renderComponent(): selected row = ', row, ' time is - ', Date.now() );
       console.log ('AddItem:renderComponent(): data  = ', 
-            (isDataActive()  && getData()[row] !== null && getData()[row] !== undefined ) 
-            ? getData()[row] : 'Data is not available');
-       var data =  getData()[row];
+            (isDataActive()  && getDataFromMainStore()[row] !== null && getDataFromMainStore()[row] !== undefined ) 
+            ? getDataFromMainStore()[row] : 'Data is not available');
+       var data =  getDataFromMainStore()[row];
   
       if(isDataActive()  &&  data !== null && data !== undefined )
       {
