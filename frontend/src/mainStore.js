@@ -32,13 +32,17 @@ export function isUserAuthenticated()
 
 export function getUserName()
 {
-    if (mainStore.getState().login !== null &&
-        mainStore.getState().login !== undefined &&
-        mainStore.getState().login !== false &&
-        mainStore.getState().login.payLoad !== null &&
-        mainStore.getState().login.payLoad !== undefined &&
-        mainStore.getState().login.payLoad !== '' &&
-        mainStore.getState().login.payLoad !== false )
+    if (
+        mainStore.getState() !== null
+        && mainStore.getState() !== undefined
+        && mainStore.getState() !== false
+        && mainStore.getState().login !== null 
+        && mainStore.getState().login !== undefined
+        && mainStore.getState().login !== false 
+        && mainStore.getState().login.payLoad !== null 
+        && mainStore.getState().login.payLoad !== undefined
+        && mainStore.getState().login.payLoad !== '' 
+        && mainStore.getState().login.payLoad !== false )
         {
             return mainStore.getState().login.payLoad.name;
         }
@@ -47,10 +51,18 @@ export function getUserName()
 
 export function isDataActive()
 {
-    if (mainStore.getState().data.payLoad !== undefined
-    && mainStore.getState().data !== null
-    && mainStore.getState().data !== false
-    && mainStore.getState().data.payLoad !== false )
+    if ( 
+        mainStore.getState() !== null
+        && mainStore.getState() !== undefined
+        && mainStore.getState() !== false
+        && mainStore.getState().data !== null
+        && mainStore.getState().data !== undefined
+        && mainStore.getState().data !== false
+        && mainStore.getState().data.payLoad !== null
+        && mainStore.getState().data.payLoad !== undefined
+        && mainStore.getState().data.payLoad !== false 
+        && mainStore.getState().data.payLoad !== [] 
+    )
     {
         return true;
     }

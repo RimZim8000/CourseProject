@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
-import  {mainStore, isDataActive} from '../mainStore';
+import  {mainStore, isUserAuthenticated, isDataActive} from '../mainStore';
 import { Link } from "react-router-dom";
 import Login , {Logout} from '../Auth/GoogAuth'
 class Header extends Component
 {
+  constructor(props)
+  {
+    super(props);
+    
+  }
+
   componentWillMount()
   {
     
@@ -23,6 +29,16 @@ class Header extends Component
     //after loging call
     console.log('Header component::doLogout-- after logout call  user is -', mainStore.getState().login.payLoad);
     
+  }
+  renderPreLoader(){
+    var toRet = <div></div>;
+    if(isUserAuthenticated() && !isDataActive())
+    {
+      toRet =  <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>;
+    }
+    return toRet;
   }
   renderContent(){
     console.log('in Header component renderContent  '+ mainStore.getState().login.payLoad);
@@ -57,6 +73,7 @@ class Header extends Component
                 {this.renderContent()}
               </ul>
             </div>
+              {this.renderPreLoader()}
           </nav>
         );
     }

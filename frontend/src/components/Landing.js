@@ -20,7 +20,8 @@ class Landing extends Component {
     for (var i=0; i < arrayOfJSONObjects.length; i++)
     {
       var row = _.mapObject(arrayOfJSONObjects[i], function(val, key) {
-      return (<td >{val}</td>);
+        
+      return (<td style={{overflow:'hidden',whiteSpace:'nowrap'}}>{val}</td>);
       });
       var values = _.values(row);
 
@@ -56,20 +57,23 @@ class Landing extends Component {
     }
     return columns;
   }
-    //className='blueTable'// class="bordered highlight responsive-table"
+    //className='blueTable'// class="bordered highlight responsive-table"style={{overflowY:'auto', border:'1px solid lightgrey'}
     myRenderData() {
-        return ( <div>
-      {(isDataActive()) 
-        ?
-        <div style={{border:'1px solid black'}}>
-        <table className='responsive-table' style={{ maxHeight: '200px'}}>
-         <tbody >
-         <tr>{this.getGridHeaders(getDataFromMainStore())} </tr>
-          {this.getGridRows(getDataFromMainStore())}
-          </tbody>
-        </table> 
-         </div>
-        : '.... So that we can get your data from the datastore'}
+        return ( 
+        <div>
+          {(isUserAuthenticated() && isDataActive()) 
+          ?
+          <div>
+          <table style={{ height: '200px', width:'98%', display: 'block', overflowY: 'scroll'}}>
+          
+          <tbody >
+          <tr>{this.getGridHeaders(getDataFromMainStore())} </tr>
+            {this.getGridRows(getDataFromMainStore())}
+            </tbody>
+          </table> 
+          </div>
+          : '.... So that we can get your data from the datastore'
+          }
         </div>
         );
     }
@@ -77,16 +81,16 @@ class Landing extends Component {
       console.log('in Landing:render(): this.props.location ', this.props.location, ' time is - ', Date.now());
       
     return (
-      <div className='myContainer'>
+      <div className='myContainer' style={{border:'1px solid lightgrey'}}>
         <div>
         <h5>Welcome to the CourseProject 2017  </h5>
           <h5>
-          { (isDataActive() &&  isUserAuthenticated()) ? 'Hello, ' + mainStore.getState().login.payLoad.name 
+          { (isUserAuthenticated() && isDataActive()) ? 'Hello, ' + mainStore.getState().login.payLoad.name 
                               : 'Please login using your Google Account' } 
           </h5>
         </div>
         <div >
-          {(isDataActive() &&  isUserAuthenticated()) ?
+          {(isUserAuthenticated() && isDataActive()) ?
           <div>
             <div >
               { this.myRenderData() }

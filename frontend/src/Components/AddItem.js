@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  {isDataActive, getDataFromMainStore} from '../mainStore';
+import  {isDataActive, getDataFromMainStore, isUserAuthenticated} from '../mainStore';
 import  {putDataDB, deleteDataDB, postDataDB } from '../Data/Data';
 
 
@@ -96,7 +96,7 @@ export class AddItem extends Component{
             ? getDataFromMainStore()[row] : 'Data is not available');
        var data =  getDataFromMainStore()[row];
   
-      if(isDataActive()  &&  data !== null && data !== undefined )
+      if(isUserAuthenticated() && isDataActive()  &&  data !== null && data !== undefined )
       {
         var f = this.state.first_name;
         var l = this.state.last_name;
@@ -107,7 +107,7 @@ export class AddItem extends Component{
           this.changStateData();
         }     
         return (
-        <section style={{border:'1px solid black'}}>
+        <section style={{border:'1px solid lightgrey'}}>
             <form onSubmit={this.handleSubmit}>
                 
                 <label for="first_name" style={{width:'10%'}} >First Name:  </label>
