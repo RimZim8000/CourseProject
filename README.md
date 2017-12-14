@@ -1,8 +1,9 @@
 # CourseProject
 
-The goal for the Spint1 and 2 of the project was to create an MVP (Minimum Viable Product). The scope for sprint1 was thus decided to be as follows - 
+## Spint1  (01 Dec 2017 - 08 Dec 2017)
 
-## Spint1
+The goal for the Spint 1 of the project was to create an MVP (Minimum Viable Product). The scope for sprint1 was as follows - 
+
 Front-end - Create WebApp using React
 
 Front-End - Use styles (CSS) in the React WebApp      
@@ -17,7 +18,11 @@ Integrate - Integrate back-end and Front-end components
 
 ###   Status - Sprint1 Activities are completed.
 
-## Spint2
+
+###   Sprint2 - 
+Goal for this sprint was to expand on the MVP from the last spint.
+
+## Spint2 (08 Dec 2017 - 15 Dec 2017)
 
 Responsive - Make the app responsive using bootstrap
 
@@ -29,7 +34,7 @@ Refactor the code - to reduce the potential debt, refactor the code.
 
 ###   Status - Sprint2 Activities are completed.
 
-## Spint3
+## Spint3 (planned) (15 Dec 2017 - 22 Dec 2017)
 
 User specific data - Make the app CRUD user specific data. Currently the app shows the data irrespective of logged in user. Going forward, we will restrict the CRUD ops to the user. 
 
@@ -38,6 +43,9 @@ Componentize the core DataGrid control for reuse
 Start working on Cassandra as the back-end DB
 
 Refactor the code - to reduce the potential debt, refactor the code.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
 
 #  Background of the project - 
 
