@@ -51,17 +51,20 @@ export function getUserName()
 
 export function isDataActive()
 {
+    var myState = mainStore.getState();
     if ( 
-        mainStore.getState() !== null
-        && mainStore.getState() !== undefined
-        && mainStore.getState() !== false
-        && mainStore.getState().data !== null
-        && mainStore.getState().data !== undefined
-        && mainStore.getState().data !== false
-        && mainStore.getState().data.payLoad !== null
-        && mainStore.getState().data.payLoad !== undefined
-        && mainStore.getState().data.payLoad !== false 
-        && mainStore.getState().data.payLoad !== [] 
+        myState !== null
+        && myState !== undefined
+        && myState !== false
+        && myState.data !== null
+        && myState.data !== undefined
+        && myState.data !== false
+        && myState.data.payLoad !== null
+        && myState.data.payLoad !== undefined
+        && myState.data.payLoad !== false 
+        && myState.data.payLoad !== [] 
+        && myState.data.payLoad.length !== 0 
+        
     )
     {
         return true;
@@ -71,10 +74,20 @@ export function isDataActive()
 
 export function getDataFromMainStore()
 {
-    if (mainStore.getState().data.payLoad !== undefined
-    && mainStore.getState().data !== null
-    && mainStore.getState().data !== false
-    && mainStore.getState().data.payLoad !== false )
+    var myState = mainStore.getState();
+    if (
+        myState !== null
+        && myState !== undefined
+        && myState !== false
+        && myState.data !== null
+        && myState.data !== undefined
+        && myState.data !== false
+        && myState.data.payLoad !== null
+        && myState.data.payLoad !== undefined
+        && myState.data.payLoad !== false 
+        && myState.data.payLoad !== [] 
+        && myState.data.payLoad.length !== 0
+     )
     {
         return mainStore.getState().data.payLoad;
     }

@@ -22,6 +22,7 @@ export function getDataDB()
                var items = json;  
                let payloadData = [...items];
                mainStore.dispatch({type: 'DATA_READY',payLoad:payloadData});
+              // mainStore.dispatch({type: 'FORM_SELECTION_CHANGED',payLoad:0});
                
           })
           .catch(error => {                  // 3
@@ -47,6 +48,7 @@ export function getDataDB()
     .then(function (response) {
          console.log('DataCollector:putData() ', response, ' time is - ', Date.now() );
          //mainStore.dispatch({type: 'DATA_READY',payLoad:payloadData});
+         //mainStore.dispatch({type: 'FORM_SELECTION_CHANGED',payLoad:0});
          getDataDB();// refesh the app with latest data from the datastore
        })
        .catch(function (error) {
@@ -67,6 +69,10 @@ export function deleteDataDB(idIn)
     .then(function (response) {
             console.log('deleteDataDB() completed '
             , response, ' time is - ', Date.now() );
+            // var nextSel = idIn;
+            // if(mainStore.getDataDB().length === idIn+1) nextSel = idIn-1;
+            // if(nextSel <0) nextSel =0;
+            mainStore.dispatch({type: 'FORM_SELECTION_CHANGED',payLoad:0});
             getDataDB();// refesh the app with latest data from the datastore
        })
        .catch(function (error) {
@@ -91,6 +97,7 @@ export function postDataDB(dataIn)
     axios.post(strUrl, dataToSave)
      .then(function (response) {
             console.log('postDataDB() completed with response= ', response, ' time is - ', Date.now() );
+      mainStore.dispatch({type: 'FORM_SELECTION_CHANGED',payLoad:dataIn.row});
             getDataDB();// refesh the app with latest data from the datastore
         })
         .catch(function (error) {

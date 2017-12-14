@@ -5,9 +5,11 @@ export default function dataReducer(state = false, action = []) {
       if (
         action !== null &&
         action !== undefined &&
+        action !== [] &&
         action.payLoad !== null &&
         action.payLoad !== undefined &&
-        action.payLoad !== []
+        action.payLoad !== [] &&
+        action.payLoad.length !== 0
         ) {
               retState = {
                 payLoad: action.payLoad

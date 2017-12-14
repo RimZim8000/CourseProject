@@ -7,6 +7,7 @@ export class AddItem extends Component{
     constructor(props)
     {
       super(props);
+      console.log('AddItem:: constructor  time - ', Date.now() );
       //this.handleChange = this.handleChange.bind(this);
       //this.handleSubmit = this.handleSubmit.bind(this);
       // this.onAuthStateChanged = this.processLogIn.bind(this);
@@ -50,7 +51,8 @@ export class AddItem extends Component{
       var data = getDataFromMainStore()[rowIn];
       
       deleteDataDB(data.id);
-      this.setState({id: data.id});
+      //this.setState({id: data.id});
+      this.changStateData();
     }
 
     handleUpdate(rowIn, e) {
@@ -61,8 +63,10 @@ export class AddItem extends Component{
 
     handleCreate(rowIn, e) {
       //e.preventDefault();
-      
-      postDataDB(this.state);
+      var changedState = this.state;
+      this.changStateData();
+      postDataDB(changedState);
+     
     }
 
     handleChange(rowIn,e) {
@@ -88,12 +92,14 @@ export class AddItem extends Component{
     {
       console.log('AddItem:renderComponent(): this.props.dataId '
       , dataId, ' time is - ', Date.now() );
-      var tempRowID = (dataId !== undefined) ? dataId :0;
-      var row = tempRowID;//getIDfromRowID(tempRowID);
+     
+      var mainStoreData = getDataFromMainStore();
+      var row = (dataId !== undefined &&  mainStoreData.length > dataId) ? dataId :0;
+     
       console.log ('AddItem:renderComponent(): selected row = ', row, ' time is - ', Date.now() );
       console.log ('AddItem:renderComponent(): data  = ', 
             (isDataActive()  && getDataFromMainStore()[row] !== null && getDataFromMainStore()[row] !== undefined ) 
-            ? getDataFromMainStore()[row] : 'Data is not available');
+            ? mainStoreData[row] : 'Data is not available');
        var data =  getDataFromMainStore()[row];
   
       if(isUserAuthenticated() && isDataActive()  &&  data !== null && data !== undefined )
@@ -109,41 +115,46 @@ export class AddItem extends Component{
         return (
         <section style={{border:'1px solid lightgrey'}}>
             <form onSubmit={this.handleSubmit}>
-                
+                <div style={{display: 'block'}}>
                 <label for="first_name" style={{width:'10%'}} >First Name:  </label>
                 <input id='first_name' type="text" style={{width:'40%'}} name="first_name" 
                   placeholder='First Name'
                   onChange={this.handleChange.bind(this,row)} 
                   value={f}
                    />
-                
-                <label for="last_name" style={{width:'10%'}} >Last Name:  </label>
+                </div>
+                <div>
+                <label for='last_name' style={{width:'10%'}} >Last Name:  </label>
                 <input id='last_name' type="text" style={{width:'40%'}} name="last_name" 
                    placeholder='Last Name'
                    onChange={this.handleChange.bind(this,row)} 
                     value={l}
                    />
-                <br/>
+                </div>
+                <div>
                 <label for="email" style={{width:'10%'}} >Email:  </label>
                 <input id="email" style={{width:'90%'}}  type="text" name="email" 
                    placeholder='Email'
                    onChange={this.handleChange.bind(this,row)} 
                    value={e}                
                    />
-                <br/>
+                </div>
+                <div>
                 <label for="subject">Subject:  </label>
                 <input id="subject" type="text" name="subject" 
                    placeholder="Subject :" 
                    onChange={this.handleChange.bind(this,row)} 
                    value={s}
                 />
-                
+                </div>
+                <div>
                 <label for="description">Description:  </label>
                 <textarea id="description"  rows="3" name="description" 
                   placeholder="Description" 
                   onChange={this.handleChange.bind(this,row)} 
                   value={d}
-               />
+                />
+                </div>
               <button style={{margin:'10px'}} 
                 className="btn waves-effect waves-light" 
                 onClick={this.handleUpdate.bind(this)}

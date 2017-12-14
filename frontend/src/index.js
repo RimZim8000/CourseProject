@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
+import {Provider } from 'react-redux';
 import 'materialize-css/dist/css/materialize.min.css';
 import initiateMainStore, {mainStore } from './mainStore';
 
@@ -13,7 +14,7 @@ console.log('in index.js mainStore.state is - ', mainStore.getState()|| "not set
 
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Provider store={mainStore}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
 
 

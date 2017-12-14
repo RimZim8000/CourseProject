@@ -34,7 +34,8 @@ export function Logout()
     
       auth.signOut().then(()=> {
         mainStore.dispatch({type: 'USER_LOGIN',payLoad:false});
-        mainStore.dispatch({type: 'DATA_READY',payLoad:[]});
+       // mainStore.dispatch({type: 'DATA_READY',payLoad:[]});
+        mainStore.dispatch({type: 'FORM_SELECTION_CHANGED',payLoad:0});
         console.log('in export function Logout()-- after Logged out ');
       });
 }
