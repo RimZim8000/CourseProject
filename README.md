@@ -4,45 +4,46 @@
 
 The goal for the Spint 1 of the project was to create an MVP (Minimum Viable Product). The scope for sprint1 was as follows - 
 
-Front-end - Create WebApp using React
+1. Front-end - Create WebApp using React
 
-Front-End - Use styles (CSS) in the React WebApp      
+2. Front-End - Use styles (CSS) in the React WebApp      
 
-Front-End - User Login and Registration areas in the React WebApp
+3. Front-End - User Login and Registration areas in the React WebApp
 
-Back-End - Create C# WebApi(s) for CRUD operations on 2 entities 
+4. Back-End - Create C# WebApi(s) for CRUD operations on 2 entities 
 
-Database -  Create Database with at least 2 Tables, etc 
+5. Database -  Create Database with at least 2 Tables, etc 
 
 Integrate - Integrate back-end and Front-end components 
 
 ###   Status - Sprint1 Activities are completed.
 
 
-###   Sprint2 - 
-Goal for this sprint was to expand on the MVP from the last spint.
-
 ## Spint2 (08 Dec 2017 - 15 Dec 2017)
 
-Responsive - Make the app responsive using bootstrap
+Goal for this sprint was to build on the MVP from the last spint - create responsive UI, implement storage and integrate CRUD ops froontent to backend.
 
-Redux storage - Use Redux storage for inter-component communication and state management
+1. Front-end - Responsive - Make the app responsive using bootstrap
 
-Integrated CRUD operation - to make the App live so that the user can have persistent CRUD operations
+2. Front-end - Redux storage - Use Redux storage for inter-component communication and state management
 
-Refactor the code - to reduce the potential debt, refactor the code.
+3. Front-end and back-end - Integrated CRUD operation - to make the App live so that the user can have persistent CRUD operations
+
+4. Refactor the code - to reduce the potential debt, refactor the code.
 
 ###   Status - Sprint2 Activities are completed.
 
 ## Spint3 (planned) (15 Dec 2017 - 22 Dec 2017)
 
-User specific data - Make the app CRUD user specific data. Currently the app shows the data irrespective of logged in user. Going forward, we will restrict the CRUD ops to the user. 
+Goal of this sprint is to build user specific UI and CRUD operations and start working on using Cassandra as the backend DB. 
 
-Componentize the core DataGrid control for reuse
+1. User specific data - Make the app CRUD user specific data. Currently the app shows the data irrespective of logged in user. Going forward, we will restrict the CRUD ops to the user. 
 
-Start working on Cassandra as the back-end DB
+2. Componentize the core DataGrid control for reuse
 
-Refactor the code - to reduce the potential debt, refactor the code.
+3. Start working on Cassandra as the back-end DB
+
+4. Refactor the code - to reduce the potential debt, refactor the code.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
