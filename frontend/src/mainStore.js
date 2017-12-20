@@ -17,13 +17,23 @@ export function getMainStore()
 
 export function isUserAuthenticated()
 {
-    if (mainStore.getState().login !== null &&
-        mainStore.getState().login !== undefined &&
-        mainStore.getState().login !== false &&
-        mainStore.getState().login.payLoad !== null &&
-        mainStore.getState().login.payLoad !== undefined &&
-        mainStore.getState().login.payLoad !== '' &&
-        mainStore.getState().login.payLoad !== false )
+    var myState = mainStore.getState();
+    if (
+        myState !== null
+        && myState !== undefined
+        && myState !== false
+        && myState.login !== null 
+        && myState.login !== undefined 
+        && myState.login !== false
+        && myState.login.payLoad !== null 
+        && myState.login.payLoad !== undefined
+        && myState.login.payLoad !== '' 
+        && myState.login.payLoad !== false 
+        && myState.login.payLoad.name !== null 
+        && myState.login.payLoad.name !== undefined 
+        && myState.login.payLoad.name !== '' 
+        && myState.login.payLoad.name !== false 
+    )
         {
             return true;
         }
@@ -32,24 +42,42 @@ export function isUserAuthenticated()
 
 export function getUserName()
 {
-    if (
-        mainStore.getState() !== null
-        && mainStore.getState() !== undefined
-        && mainStore.getState() !== false
-        && mainStore.getState().login !== null 
-        && mainStore.getState().login !== undefined
-        && mainStore.getState().login !== false 
-        && mainStore.getState().login.payLoad !== null 
-        && mainStore.getState().login.payLoad !== undefined
-        && mainStore.getState().login.payLoad !== '' 
-        && mainStore.getState().login.payLoad !== false )
+    if (isUserAuthenticated() )
         {
             return mainStore.getState().login.payLoad.name;
         }
     return '';
 }
 
+export function getUserOtherInfo()
+{
+    if (isUserAuthenticated() )
+        {
+            return mainStore.getState().login.payLoad.otherInfo;
+        }
+    return '';
+}
 export function isDataActive()
+{
+    var myState = mainStore.getState();
+    if ( isUserAuthenticated() 
+        && myState.data !== null
+        && myState.data !== undefined
+        && myState.data !== false
+        && myState.data.payLoad !== null
+        && myState.data.payLoad !== undefined
+        && myState.data.payLoad !== false 
+        && myState.data.payLoad !== [] 
+        && myState.data.payLoad.length !== 0 
+        
+    )
+    {
+        return true;
+    }
+    return false;
+}
+
+export function isDataActiveCheckOnlyData()
 {
     var myState = mainStore.getState();
     if ( 
@@ -71,23 +99,10 @@ export function isDataActive()
     }
     return false;
 }
-
 export function getDataFromMainStore()
 {
     var myState = mainStore.getState();
-    if (
-        myState !== null
-        && myState !== undefined
-        && myState !== false
-        && myState.data !== null
-        && myState.data !== undefined
-        && myState.data !== false
-        && myState.data.payLoad !== null
-        && myState.data.payLoad !== undefined
-        && myState.data.payLoad !== false 
-        && myState.data.payLoad !== [] 
-        && myState.data.payLoad.length !== 0
-     )
+    if (isDataActive())
     {
         return mainStore.getState().data.payLoad;
     }
@@ -97,7 +112,7 @@ export function getDataFromMainStore()
 export function getIDfromRowID(tempRowID)
 {
     var nRetID =  0;
-    if  ( isDataActive()) 
+    if  (isDataActive()) 
     {
         var data  = mainStore.getState().data.payLoad;
         nRetID = _.findLastIndex(data, {

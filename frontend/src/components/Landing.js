@@ -119,7 +119,7 @@ class Landing extends Component {
       
     return (
       <div className='myContainer' style={{border:'1px solid lightgrey'}}>
-        <div>
+        <div className='App-title'>
         <h5>Welcome to the CourseProject 2017  </h5>
           <h5>
           { (isUserAuthenticated() && isDataActive()) ? 'Hello, ' + mainStoreState.login.payLoad.name 

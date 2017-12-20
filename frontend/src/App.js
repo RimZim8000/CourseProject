@@ -5,6 +5,7 @@ import Header from './Components/Header';
 import Landing from './Components/Landing';
 import Dashboard from './Components/Dashboard';
 import MyNewItem from './Components/MyNewItem';
+import UserInfo from './Components/UserInfo';
 import  {mainStore} from './mainStore';
 
 import './App.css';
@@ -44,6 +45,7 @@ class App extends Component {
             <Route exact path='/' component={Landing}> </Route>
             <Route path='/MyItems' component={Landing}> </Route>
             <Route path='/MyNewItem' component={MyNewItem}> </Route>
+            <Route path='/UserInfo' component={UserInfo}> </Route>
             <Route path='/Settings' component={Dashboard}> </Route>
           </Switch>
         </div>
