@@ -1,12 +1,18 @@
-import  {mainStore} from '../mainStore';
+import  {mainStore, isUserAuthenticated} from '../mainStore';
 
 import axios from 'axios';
 
 
 export function getDataDB()
  {
+     //get Data from DB on;y is you have an authenticated user.... defense in depth. This is UI level defense.
+     if (!isUserAuthenticated()) 
+     {
+         console.log('getDataDB() - We dont have any authenticated user in the system yet.. Login is needed to run the getDataDB function');
+        return;
+     }
     var urlForGetContactData = process.env.REACT_APP_DATASOURCE_CONTACTS;
-    console.log('DataCollector:getData() - our data source is ', urlForGetContactData);//urlForGetUserData);
+    console.log('getDataDB() - our data source is ', urlForGetContactData);//urlForGetUserData);
     var myRequest = new Request(urlForGetContactData);
     console.log('........ Data gathering started - just before fetch(myRequest) in the function getDataFromDB()........');
     console.log('########################### Data gathering started  at - ', Date.now());

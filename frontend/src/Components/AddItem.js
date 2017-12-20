@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import  {isDataActive, getDataFromMainStore, isUserAuthenticated} from '../mainStore';
 import  {putDataDB, deleteDataDB, postDataDB } from '../Data/Data';
-
+import ConfirmationBox from './ConfirmationBox';
 
 export class AddItem extends Component{
     constructor(props)
@@ -13,22 +13,30 @@ export class AddItem extends Component{
       // this.onAuthStateChanged = this.processLogIn.bind(this);
       var tempRow = (props.dataId !== undefined) ? props.dataId :0;
       var data = getDataFromMainStore()[tempRow];
-      
+     
       if (isDataActive()  && data !== null && data !== undefined )
       {
           this.state = {
-            row:props.dataId,
-            id: data.id,
-            first_name: data.first_name,
-            last_name:data.last_name,
-            email:data.email,
-            subject:data.subject,
-            description:data.description
+              modalOperation : {
+                showModal:false,
+                operation:''
+              },
+              row:props.dataId,
+              id: data.id,
+              first_name: data.first_name,
+              last_name:data.last_name,
+              email:data.email,
+              subject:data.subject,
+              description:data.description
           }
         }
         else
         {
           this.state = {
+            modalOperation : {
+              showModal:false,
+              operation:''
+            },
             row:props.dataId,
             id:props.dataId,
             first_name: '',
@@ -45,12 +53,16 @@ export class AddItem extends Component{
       this.changStateData();
     }
     
+    OnClickDBOperation(operationIn,e)
+    {
+      this.setState({modalOperation: {showModal: true, operation:operationIn }});
+    }
 
     handleDelete(rowIn, e) {
       //e.preventDefault();
-      var data = getDataFromMainStore()[rowIn];
+      // var data = getDataFromMainStore()[rowIn];
       
-      deleteDataDB(data.id);
+      deleteDataDB(this.state.id);
       //this.setState({id: data.id});
       this.changStateData();
     }
@@ -88,6 +100,61 @@ export class AddItem extends Component{
         this.setState({description: data.description});
       }
     }
+    handleChildClickCancel(xx)
+    {
+      this.setState({modalOperation: {showModal: false, operation:'' }});
+    }
+    handleChildClickOk(xx)
+    {
+      //if (confirm('Are you sure ?') === true)
+      var operation = this.state.modalOperation.operation;
+      //alert(xx);
+      switch (operation){
+        case 'delete':
+        {
+          deleteDataDB(this.state.id);
+          console.log('delete - ok pressed');
+          // delete it
+          break;
+        }
+        case 'create':
+        {
+          console.log('create - ok pressed');
+          var changedState = this.state;
+          //this.changStateData();
+          postDataDB(changedState);
+          break;
+        }
+        case 'update':
+        {
+          console.log('update - ok pressed');
+          putDataDB(this.state);
+          break;
+        }
+        default:
+        {
+          // delete it
+        }
+      }
+      this.handleChildClickCancel(xx);
+    }
+    
+    showConfirmation()
+    {
+      if(this.state.modalOperation.showModal) 
+      {
+        const item = {'operation':this.state.modalOperation.operation,'text':'hello'};
+        return (
+          <ConfirmationBox  
+            sendBackOk = {this.handleChildClickOk.bind(this)}
+            sendBackCancel = {this.handleChildClickCancel.bind(this)}
+            childItem ={item} />
+        
+      );
+      }
+    }
+    
+
     renderComponent( dataId)
     {
       console.log('AddItem:renderComponent(): this.props.dataId '
@@ -98,9 +165,9 @@ export class AddItem extends Component{
      
       console.log ('AddItem:renderComponent(): selected row = ', row, ' time is - ', Date.now() );
       console.log ('AddItem:renderComponent(): data  = ', 
-            (isDataActive()  && getDataFromMainStore()[row] !== null && getDataFromMainStore()[row] !== undefined ) 
+            (isDataActive()  && mainStoreData[row] !== null && mainStoreData[row] !== undefined ) 
             ? mainStoreData[row] : 'Data is not available');
-       var data =  getDataFromMainStore()[row];
+       var data =  mainStoreData[row];
   
       if(isUserAuthenticated() && isDataActive()  &&  data !== null && data !== undefined )
       {
@@ -116,6 +183,7 @@ export class AddItem extends Component{
         <section style={{border:'1px solid lightgrey'}}>
             <form onSubmit={this.handleSubmit}>
                 <div style={{display: 'block'}}>
+                {this.showConfirmation()}
                 <label for="first_name" style={{width:'10%'}} >First Name:  </label>
                 <input id='first_name' type="text" style={{width:'40%'}} name="first_name" 
                   placeholder='First Name'
@@ -157,17 +225,17 @@ export class AddItem extends Component{
                 </div>
               <button style={{margin:'10px'}} 
                 className="btn waves-effect waves-light" 
-                onClick={this.handleUpdate.bind(this)}
+                onClick={this.OnClickDBOperation.bind(this,'update')}
                 type="button" name="Update">Update</button>
               
               <button style={{margin:'10px'}} 
                 className="btn waves-effect waves-light" 
-                onClick={this.handleCreate.bind(this, row)}
+                onClick={this.OnClickDBOperation.bind(this,'create')}
                 type="button" name="CreateNew">Create New</button>
               
               <button style={{margin:'10px'}} 
                 className="btn waves-effect waves-light" 
-                onClick={this.handleDelete.bind(this, row)}
+                onClick={this.OnClickDBOperation.bind(this,'delete')}
                 type="button" name="Delete">Delete</button>
               </form>
         </section>

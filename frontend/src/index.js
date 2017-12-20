@@ -4,7 +4,8 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
 import {Provider } from 'react-redux';
-import 'materialize-css/dist/css/materialize.min.css';
+//import 'https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css';
+ import 'materialize-css/dist/css/materialize.min.css';
 import initiateMainStore, {mainStore } from './mainStore';
 
 
